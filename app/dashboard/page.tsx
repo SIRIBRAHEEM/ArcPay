@@ -32,13 +32,13 @@ export default function Dashboard() {
           <div className="text-sm text-zinc-500">ARC TESTNET</div>
         </div>
 
-        {/* Hero Headline - Revised to match AnomaPay style */}
+        {/* Hero Headline - Option 3 */}
         <div className="mb-12">
           <h2 className="text-5xl leading-[1.05] font-bold tracking-[-2px]">
-            Private payments<br />made easy
+            The simplest way<br />to pay with USDC
           </h2>
-          <p className="text-zinc-600 mt-4 text-lg leading-tight">
-            Send, receive, and shop with USDC instantly on Arc Testnet
+          <p className="text-zinc-600 mt-4 text-lg">
+            Send, receive, and shop instantly on Arc Testnet
           </p>
         </div>
 
@@ -93,24 +93,4 @@ export default function Dashboard() {
             <ArrowRight className="text-zinc-400 group-hover:text-black transition" />
           </Link>
 
-          <Link href="/shop" className="flex items-center gap-5 bg-white p-6 rounded-3xl shadow hover:shadow-xl transition group">
-            <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
-              <ShoppingBag className="text-purple-600" size={32} />
-            </div>
-            <div className="flex-1">
-              <p className="text-xl font-semibold">Shop</p>
-              <p className="text-zinc-500">Buy with USDC</p>
-            </div>
-            <ArrowRight className="text-zinc-400 group-hover:text-black transition" />
-          </Link>
-        </div>
-
-        {isConnected && address && (
-          <p className="text-center text-xs text-zinc-500 mt-12 font-mono break-all">
-            {address}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
+          <Link href="/shop" className="
