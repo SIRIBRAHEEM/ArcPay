@@ -3,5 +3,12 @@
 @tailwind utilities;
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system_ui, sans-serif;
+  background: linear-gradient(135deg, #0a0a0a, #1a0033);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
