@@ -4,8 +4,9 @@ import { Toaster } from "sonner";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "ArcPay",
-  description: "Send, receive, and shop with USDC on Arc Testnet",
+  title: "ArcPay - USDC on Arc Testnet",
+  description: "Send, receive & shop with USDC",
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
@@ -15,10 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-zinc-950 text-white">
+      <body className="bg-zinc-950 text-white antialiased">
         <Providers>
           {children}
-          <Toaster />
+          <Toaster position="top-center" richColors />
         </Providers>
       </body>
     </html>
