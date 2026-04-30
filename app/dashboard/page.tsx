@@ -13,8 +13,11 @@ export default function Dashboard() {
     const metaMask = connectors.find((c) => 
       c.name.toLowerCase().includes('metamask') || c.name.includes('Injected')
     );
-    if (metaMask) connect({ connector: metaMask });
-    else toast.error("Please install MetaMask or another wallet");
+    if (metaMask) {
+      connect({ connector: metaMask });
+    } else {
+      toast.error("Please install MetaMask or another wallet");
+    }
   };
 
   return (
@@ -105,3 +108,15 @@ export default function Dashboard() {
               <p className="text-zinc-500">Buy with USDC</p>
             </div>
             <ArrowRight className="text-zinc-400 group-hover:text-black transition" />
+          </Link>
+        </div>
+
+        {isConnected && address && (
+          <p className="text-center text-xs text-zinc-500 mt-12 font-mono break-all">
+            {address}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
