@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount, useWalletClient } from 'wagmi';
 import { sendUSDC, getViemAdapter } from '../lib/arc';
 import { toast } from 'sonner';
 import { ArrowLeft } from 'lucide-react';
@@ -8,30 +8,28 @@ import { ArrowLeft } from 'lucide-react';
 const tags = ['coffee', 'rent', 'invoice', 'gift', 'other'];
 
 export default function SendPage() {
-  const { address, connector } = useAccount();
+  const { address, connector, isConnected } = useAccount();
+  const { data: walletClient } = useWalletClient();
+  
   const [to, setTo] = useState('');
   const [amount, setAmount] = useState('');
   const [tag, setTag] = useState('coffee');
   const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
-    if (!address || !connector || !to || !amount) {
-      toast.error("Please fill all fields and connect wallet");
+    if (!isConnected || !walletClient || !to || !amount) {
+      toast.error("Please connect wallet and fill all fields");
       return;
     }
 
     setLoading(true);
     try {
-      const walletClient = await connector.getWalletClient?.();
-      if (!walletClient) throw new Error("Failed to get wallet client");
-
       const adapter = await getViemAdapter(walletClient);
       const result = await sendUSDC(adapter, to as `0x${string}`, amount, tag);
 
       toast.success(`✅ Sent ${amount} USDC • Tag: ${tag}`);
-      console.log("Transaction:", result);
       
-      // Clear form after success
+      // Clear form
       setTo('');
       setAmount('');
     } catch (e: any) {
@@ -81,7 +79,7 @@ export default function SendPage() {
 
         <button
           onClick={handleSend}
-          disabled={loading || !to || !amount}
+          disabled={loading || !to || !amount || !isConnected}
           className="w-full bg-emerald-500 hover:bg-emerald-600 disabled:bg-zinc-700 py-6 rounded-3xl text-xl font-bold transition mt-4"
         >
           {loading ? 'Sending...' : `Send ${amount || ''} USDC`}
