@@ -10,46 +10,43 @@ export default function Dashboard() {
   const { disconnect } = useDisconnect();
 
   const handleConnect = () => {
-    const injected = connectors.find(c => c.name.includes('Injected') || c.name.includes('MetaMask'));
-    if (injected) {
-      connect({ connector: injected });
-    } else {
-      toast.error("Please install MetaMask or another wallet");
-    }
+    const metaMask = connectors.find((c) => c.name.toLowerCase().includes('metamask') || c.name.includes('Injected'));
+    if (metaMask) connect({ connector: metaMask });
+    else toast.error("Please install MetaMask or another EVM wallet");
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
-      <div className="max-w-md mx-auto px-6 pt-10">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-12">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-2xl flex items-center justify-center text-3xl shadow-inner">
+    <div className="min-h-screen bg-[#050505] text-white pb-24 overflow-hidden">
+      <div className="max-w-md mx-auto px-6 pt-12">
+        {/* Header - AnomaPay Style */}
+        <div className="flex items-center justify-between mb-14">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-3xl flex items-center justify-center text-3xl">
               ⚡
             </div>
             <div>
-              <h1 className="text-4xl font-bold tracking-tighter">ArcPay</h1>
-              <p className="text-xs text-emerald-400 -mt-1">ARC TESTNET</p>
+              <h1 className="text-5xl font-bold tracking-[-2px]">ArcPay</h1>
+              <p className="text-emerald-400 text-sm -mt-1">ARC TESTNET</p>
             </div>
           </div>
-          <div className="text-xs text-zinc-500">Private • Instant • Secure</div>
+          <div className="text-xs text-zinc-500">Private • Fast • Secure</div>
         </div>
 
-        {/* Balance Card - AnomaPay Style */}
-        <div className="glass rounded-3xl p-8 mb-10 text-center relative overflow-hidden">
-          <p className="uppercase text-xs tracking-[2px] text-zinc-400 mb-1">Available Balance</p>
+        {/* Balance - Large & Premium */}
+        <div className="glass rounded-3xl p-10 mb-12 text-center relative">
+          <p className="uppercase tracking-[4px] text-xs text-zinc-400 mb-3">YOUR BALANCE</p>
           <p className="text-7xl font-semibold tracking-tighter">42.50</p>
-          <p className="text-3xl text-emerald-400 mt-1">USDC</p>
-          <div className="absolute -bottom-8 -right-8 text-[140px] opacity-5 pointer-events-none">💸</div>
+          <p className="text-4xl text-emerald-400 mt-2">USDC</p>
+          <div className="absolute bottom-0 right-6 text-[180px] opacity-5 pointer-events-none">💸</div>
         </div>
 
-        {/* Wallet Connection Prompt */}
+        {/* Connect Wallet Prompt */}
         {!isConnected && (
-          <div className="glass rounded-3xl p-6 mb-8 text-center">
-            <p className="text-sm text-zinc-400 mb-4">Connect wallet to send & receive USDC on Arc Testnet</p>
+          <div className="glass rounded-3xl p-8 mb-10 text-center">
+            <p className="text-zinc-400 mb-6">Connect your wallet to send and receive USDC on Arc Testnet</p>
             <button
               onClick={handleConnect}
-              className="w-full bg-white text-black font-semibold py-4 rounded-2xl hover:bg-emerald-400 transition-all active:scale-95"
+              className="w-full bg-white hover:bg-emerald-400 active:bg-emerald-500 text-black font-semibold py-4.5 rounded-2xl text-lg transition-all duration-200"
             >
               Connect Wallet
             </button>
@@ -58,53 +55,50 @@ export default function Dashboard() {
 
         {isConnected && (
           <div className="flex justify-end mb-6">
-            <button
-              onClick={() => disconnect()}
-              className="flex items-center gap-2 text-xs text-zinc-400 hover:text-white transition"
-            >
-              <LogOut size={16} /> Disconnect
+            <button onClick={() => disconnect()} className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm">
+              <LogOut size={18} /> Disconnect
             </button>
           </div>
         )}
 
-        {/* Quick Actions */}
+        {/* Quick Actions - Clean & Spacious like AnomaPay */}
         <div className="space-y-4">
-          <Link href="/send" className="glass card-hover rounded-3xl p-6 flex items-center gap-5 group">
-            <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-              <Send className="text-emerald-400" size={28} />
+          <Link href="/send" className="glass card-hover rounded-3xl p-7 flex items-center gap-6 group">
+            <div className="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <Send size={32} className="text-emerald-400" />
             </div>
             <div className="flex-1">
-              <p className="text-xl font-semibold">Send USDC</p>
-              <p className="text-zinc-400 text-sm">With tags • Instant</p>
+              <p className="text-2xl font-semibold">Send</p>
+              <p className="text-zinc-400">Instant with tags</p>
             </div>
-            <ArrowRight className="text-zinc-400 group-hover:text-white transition" />
+            <ArrowRight className="text-zinc-400 group-hover:translate-x-1 transition" />
           </Link>
 
-          <Link href="/receive" className="glass card-hover rounded-3xl p-6 flex items-center gap-5 group">
-            <div className="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-              <QrCode className="text-cyan-400" size={28} />
+          <Link href="/receive" className="glass card-hover rounded-3xl p-7 flex items-center gap-6 group">
+            <div className="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <QrCode size={32} className="text-cyan-400" />
             </div>
             <div className="flex-1">
-              <p className="text-xl font-semibold">Receive</p>
-              <p className="text-zinc-400 text-sm">Show QR code</p>
+              <p className="text-2xl font-semibold">Receive</p>
+              <p className="text-zinc-400">QR Code & Link</p>
             </div>
-            <ArrowRight className="text-zinc-400 group-hover:text-white transition" />
+            <ArrowRight className="text-zinc-400 group-hover:translate-x-1 transition" />
           </Link>
 
-          <Link href="/shop" className="glass card-hover rounded-3xl p-6 flex items-center gap-5 group">
-            <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-              <ShoppingBag className="text-purple-400" size={28} />
+          <Link href="/shop" className="glass card-hover rounded-3xl p-7 flex items-center gap-6 group">
+            <div className="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <ShoppingBag size={32} className="text-purple-400" />
             </div>
             <div className="flex-1">
-              <p className="text-xl font-semibold">Shop</p>
-              <p className="text-zinc-400 text-sm">Buy with USDC</p>
+              <p className="text-2xl font-semibold">Shop</p>
+              <p className="text-zinc-400">Buy with USDC</p>
             </div>
-            <ArrowRight className="text-zinc-400 group-hover:text-white transition" />
+            <ArrowRight className="text-zinc-400 group-hover:translate-x-1 transition" />
           </Link>
         </div>
 
         {isConnected && address && (
-          <p className="text-center text-[10px] text-zinc-600 font-mono mt-12 break-all px-4">
+          <p className="text-center mt-16 text-[10px] text-zinc-700 font-mono break-all px-4">
             {address}
           </p>
         )}
