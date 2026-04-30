@@ -3,12 +3,23 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', system_ui, sans-serif;
-  background: linear-gradient(135deg, #0a0a0a, #1a0033);
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #0a0a0a;
+  color: white;
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 255, 159, 0.15);
 }
