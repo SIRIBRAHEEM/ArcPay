@@ -1,4 +1,3 @@
-// app/lib/chain.ts
 import { defineChain } from "viem";
 
 export const arcTestnet = defineChain({
