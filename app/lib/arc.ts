@@ -1,14 +1,16 @@
+// app/lib/arc.ts
 import { AppKit } from '@circle-fin/app-kit';
-import { createViemAdapter } from '@circle-fin/adapter-viem-v2';
+import { createAdapterFromProvider } from '@circle-fin/adapter-viem-v2';
 import { arcTestnet } from './chain';
 
 export const kit = new AppKit();
 
+// For browser wallets (wagmi / WalletConnect / MetaMask)
 export async function getViemAdapter(walletClient: any) {
-  return createViemAdapter({
-    walletClient,
-    chain: arcTestnet,
-  });
+  if (!walletClient) throw new Error("No wallet client");
+  
+  const provider = walletClient.transport?.value?.provider || walletClient;
+  return createAdapterFromProvider({ provider });
 }
 
 export async function sendUSDC(
