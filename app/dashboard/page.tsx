@@ -32,7 +32,7 @@ export default function Dashboard() {
           <div className="text-sm text-zinc-500">ARC TESTNET</div>
         </div>
 
-        {/* Hero Headline - Option 3 */}
+        {/* Hero Headline */}
         <div className="mb-12">
           <h2 className="text-5xl leading-[1.05] font-bold tracking-[-2px]">
             The simplest way<br />to pay with USDC
@@ -90,7 +90,4 @@ export default function Dashboard() {
               <p className="text-xl font-semibold">Receive</p>
               <p className="text-zinc-500">Show QR code</p>
             </div>
-            <ArrowRight className="text-zinc-400 group-hover:text-black transition" />
-          </Link>
-
-          <Link href="/shop" className="
+            <
