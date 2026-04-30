@@ -10,7 +10,9 @@ export default function Dashboard() {
   const { disconnect } = useDisconnect();
 
   const handleConnect = () => {
-    const metaMask = connectors.find((c) => c.name.toLowerCase().includes('metamask') || c.name.includes('Injected'));
+    const metaMask = connectors.find((c) => 
+      c.name.toLowerCase().includes('metamask') || c.name.includes('Injected')
+    );
     if (metaMask) connect({ connector: metaMask });
     else toast.error("Please install MetaMask or another wallet");
   };
@@ -30,13 +32,13 @@ export default function Dashboard() {
           <div className="text-sm text-zinc-500">ARC TESTNET</div>
         </div>
 
-        {/* Hero Text - Matching AnomaPay style */}
+        {/* Hero Headline - Revised to match AnomaPay style */}
         <div className="mb-12">
           <h2 className="text-5xl leading-[1.05] font-bold tracking-[-2px]">
             Private payments<br />made easy
           </h2>
-          <p className="text-zinc-600 mt-4 text-lg">
-            Send, receive and shop with USDC on Arc Testnet
+          <p className="text-zinc-600 mt-4 text-lg leading-tight">
+            Send, receive, and shop with USDC instantly on Arc Testnet
           </p>
         </div>
 
@@ -67,7 +69,7 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Actions */}
+        {/* Quick Actions */}
         <div className="space-y-4">
           <Link href="/send" className="flex items-center gap-5 bg-white p-6 rounded-3xl shadow hover:shadow-xl transition group">
             <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center">
