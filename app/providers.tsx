@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 const config = createConfig({
   chains: [arcTestnet],
   transports: {
-    [arcTestnet.id]: http(),
+    [arcTestnet.id]: http("https://rpc.testnet.arc.network"),
   },
 });
 
