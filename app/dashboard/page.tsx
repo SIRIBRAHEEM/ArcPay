@@ -63,31 +63,4 @@ export default function Dashboard() {
 
         {isConnected && (
           <div className="flex justify-end mb-6">
-            <button onClick={() => disconnect()} className="text-sm flex items-center gap-2 text-zinc-500 hover:text-black">
-              <LogOut size={18} /> Disconnect
-            </button>
-          </div>
-        )}
-
-        {/* Quick Actions */}
-        <div className="space-y-4">
-          <Link href="/send" className="flex items-center gap-5 bg-white p-6 rounded-3xl shadow hover:shadow-xl transition group">
-            <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center">
-              <Send className="text-emerald-600" size={32} />
-            </div>
-            <div className="flex-1">
-              <p className="text-xl font-semibold">Send USDC</p>
-              <p className="text-zinc-500">Instant with tags</p>
-            </div>
-            <ArrowRight className="text-zinc-400 group-hover:text-black transition" />
-          </Link>
-
-          <Link href="/receive" className="flex items-center gap-5 bg-white p-6 rounded-3xl shadow hover:shadow-xl transition group">
-            <div className="w-14 h-14 bg-cyan-100 rounded-2xl flex items-center justify-center">
-              <QrCode className="text-cyan-600" size={32} />
-            </div>
-            <div className="flex-1">
-              <p className="text-xl font-semibold">Receive</p>
-              <p className="text-zinc-500">Show QR code</p>
-            </div>
-            <
+            <button onClick={() => disconnect()} className="text-sm flex items-center gap-2 text-zinc-500 hover:text-black
