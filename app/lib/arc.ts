@@ -1,8 +1,6 @@
-// app/lib/arc.ts
 import { AppKit } from '@circle-fin/app-kit';
 import { createViemAdapter } from '@circle-fin/adapter-viem-v2';
 import { arcTestnet } from './chain';
-import { createWalletClient, http } from 'viem';
 
 export const kit = new AppKit();
 
