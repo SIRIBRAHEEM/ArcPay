@@ -1,7 +1,8 @@
+// app/lib/arc.ts
 import { AppKit } from '@circle-fin/app-kit';
-import { createWalletClient, http } from 'viem';
-import { createViemAdapter } from '@circle-fin/app-kit/adapters';
+import { createViemAdapter } from '@circle-fin/adapter-viem-v2';
 import { arcTestnet } from './chain';
+import { createWalletClient, http } from 'viem';
 
 export const kit = new AppKit();
 
@@ -15,7 +16,7 @@ export async function getViemAdapter(walletClient: any) {
 export async function sendUSDC(
   adapter: any,
   to: `0x${string}`,
-  amount: string, // in USDC (6 decimals displayed, handled by kit)
+  amount: string,
   tag?: string
 ) {
   const params = {
