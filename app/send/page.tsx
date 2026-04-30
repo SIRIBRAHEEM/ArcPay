@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useAccount, useConnect } from 'wagmi';
-import { sendUSDC, getViemAdapter } from '../../lib/arc';
+import { sendUSDC, getViemAdapter } from '../lib/arc';
 import { toast } from 'sonner';
 import { ArrowLeft } from 'lucide-react';
 
