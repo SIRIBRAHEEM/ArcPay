@@ -1,15 +1,27 @@
 'use client';
-import { useAccount } from 'wagmi';
+import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import Link from 'next/link';
-import { Send, QrCode, ShoppingBag, ArrowRight } from 'lucide-react';
+import { Send, QrCode, ShoppingBag, ArrowRight, LogOut } from 'lucide-react';
+import { toast } from 'sonner';
 
 export default function Dashboard() {
   const { address, isConnected } = useAccount();
+  const { connect, connectors } = useConnect();
+  const { disconnect } = useDisconnect();
+
+  const handleConnect = () => {
+    const injected = connectors.find(c => c.name.includes('Injected') || c.name.includes('MetaMask'));
+    if (injected) {
+      connect({ connector: injected });
+    } else {
+      toast.error("Please install MetaMask or another wallet");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
       <div className="max-w-md mx-auto px-6 pt-10">
-        {/* Header - exact AnomaPay style */}
+        {/* Header */}
         <div className="flex items-center justify-between mb-12">
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-2xl flex items-center justify-center text-3xl shadow-inner">
@@ -20,10 +32,10 @@ export default function Dashboard() {
               <p className="text-xs text-emerald-400 -mt-1">ARC TESTNET</p>
             </div>
           </div>
-          <div className="text-xs text-zinc-500">Private • Instant</div>
+          <div className="text-xs text-zinc-500">Private • Instant • Secure</div>
         </div>
 
-        {/* Balance Card */}
+        {/* Balance Card - AnomaPay Style */}
         <div className="glass rounded-3xl p-8 mb-10 text-center relative overflow-hidden">
           <p className="uppercase text-xs tracking-[2px] text-zinc-400 mb-1">Available Balance</p>
           <p className="text-7xl font-semibold tracking-tighter">42.50</p>
@@ -33,13 +45,29 @@ export default function Dashboard() {
 
         {/* Wallet Connection Prompt */}
         {!isConnected && (
-          <div className="glass rounded-3xl p-5 mb-8 text-center">
-            <p className="text-sm text-zinc-400 mb-3">Connect wallet to send USDC on Arc Testnet</p>
-            <w3m-button />
+          <div className="glass rounded-3xl p-6 mb-8 text-center">
+            <p className="text-sm text-zinc-400 mb-4">Connect wallet to send & receive USDC on Arc Testnet</p>
+            <button
+              onClick={handleConnect}
+              className="w-full bg-white text-black font-semibold py-4 rounded-2xl hover:bg-emerald-400 transition-all active:scale-95"
+            >
+              Connect Wallet
+            </button>
           </div>
         )}
 
-        {/* Quick Actions - exact AnomaPay layout */}
+        {isConnected && (
+          <div className="flex justify-end mb-6">
+            <button
+              onClick={() => disconnect()}
+              className="flex items-center gap-2 text-xs text-zinc-400 hover:text-white transition"
+            >
+              <LogOut size={16} /> Disconnect
+            </button>
+          </div>
+        )}
+
+        {/* Quick Actions */}
         <div className="space-y-4">
           <Link href="/send" className="glass card-hover rounded-3xl p-6 flex items-center gap-5 group">
             <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
@@ -76,7 +104,7 @@ export default function Dashboard() {
         </div>
 
         {isConnected && address && (
-          <p className="text-center text-[10px] text-zinc-600 font-mono mt-12 break-all">
+          <p className="text-center text-[10px] text-zinc-600 font-mono mt-12 break-all px-4">
             {address}
           </p>
         )}
