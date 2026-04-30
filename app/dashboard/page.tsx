@@ -1,7 +1,7 @@
 'use client';
 import { useAccount } from 'wagmi';
 import Link from 'next/link';
-import { Send, QrCode, ShoppingBag, History } from 'lucide-react';
+import { Send, QrCode, ShoppingBag, History, ArrowRight } from 'lucide-react';
 
 export default function Dashboard() {
   const { address, isConnected } = useAccount();
@@ -33,7 +33,7 @@ export default function Dashboard() {
           <div className="absolute -bottom-6 -right-6 text-[120px] opacity-5">💸</div>
         </div>
 
-        {/* Quick Actions - AnomaPay Style */}
+        {/* Quick Actions */}
         <div className="space-y-4">
           <Link href="/send" className="glass card-hover rounded-3xl p-6 flex items-center gap-5 group">
             <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center">
@@ -69,7 +69,7 @@ export default function Dashboard() {
           </Link>
         </div>
 
-        {isConnected && (
+        {isConnected && address && (
           <p className="text-center mt-12 text-[10px] text-zinc-600 font-mono break-all px-4">
             {address}
           </p>
