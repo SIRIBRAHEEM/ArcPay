@@ -1,75 +1,76 @@
 'use client';
 import { useAccount } from 'wagmi';
 import Link from 'next/link';
-import { Send, QrCode, ShoppingBag, History, ArrowRight } from 'lucide-react';
+import { Send, QrCode, ShoppingBag, History } from 'lucide-react';
 
 export default function Dashboard() {
   const { address, isConnected } = useAccount();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-black to-cyan-950 text-white pb-20">
-      <div className="max-w-md mx-auto p-6">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-5xl font-bold tracking-tighter bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-              ArcPay
-            </h1>
-            <p className="text-cyan-400 text-sm">Arc Testnet • Instant USDC</p>
+    <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
+      <div className="max-w-md mx-auto px-6 pt-10">
+        {/* Logo & Header */}
+        <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-2xl flex items-center justify-center text-2xl">
+              ⚡
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold tracking-tighter">ArcPay</h1>
+              <p className="text-xs text-emerald-400 -mt-1">ARC TESTNET</p>
+            </div>
           </div>
-          <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-2xl flex items-center justify-center text-xl">
-            💸
+          <div className="text-right text-xs text-zinc-500">
+            Private • Instant • Secure
           </div>
         </div>
 
-        {/* Balance Card */}
+        {/* Balance */}
         <div className="glass rounded-3xl p-8 mb-10 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10"></div>
-          <p className="text-sm text-cyan-300 tracking-widest">YOUR BALANCE</p>
-          <p className="text-7xl font-bold mt-3 mb-1">42.50</p>
-          <p className="text-2xl text-emerald-400">USDC</p>
-          <p className="text-xs text-zinc-400 mt-4">on Arc Testnet</p>
+          <p className="uppercase tracking-[3px] text-xs text-zinc-400 mb-2">Available Balance</p>
+          <p className="text-6xl font-semibold tracking-tighter">42.50</p>
+          <p className="text-2xl text-emerald-400 mt-1">USDC</p>
+          <div className="absolute -bottom-6 -right-6 text-[120px] opacity-5">💸</div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="grid grid-cols-2 gap-4 mb-10">
-          <Link href="/send" className="group glass rounded-3xl p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
-            <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-4 group-hover:rotate-12 transition">
-              <Send size={32} className="text-emerald-400" />
+        {/* Quick Actions - AnomaPay Style */}
+        <div className="space-y-4">
+          <Link href="/send" className="glass card-hover rounded-3xl p-6 flex items-center gap-5 group">
+            <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center">
+              <Send className="text-emerald-400" size={28} />
             </div>
-            <p className="font-semibold text-lg">Send</p>
-            <p className="text-xs text-zinc-400">Instant P2P</p>
+            <div className="flex-1">
+              <p className="text-xl font-semibold">Send</p>
+              <p className="text-zinc-400 text-sm">Instant transfer with tags</p>
+            </div>
+            <ArrowRight className="opacity-40 group-hover:opacity-100 transition" />
           </Link>
 
-          <Link href="/receive" className="group glass rounded-3xl p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
-            <div className="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-4 group-hover:-rotate-12 transition">
-              <QrCode size={32} className="text-cyan-400" />
+          <Link href="/receive" className="glass card-hover rounded-3xl p-6 flex items-center gap-5 group">
+            <div className="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center">
+              <QrCode className="text-cyan-400" size={28} />
             </div>
-            <p className="font-semibold text-lg">Receive</p>
-            <p className="text-xs text-zinc-400">Show QR</p>
+            <div className="flex-1">
+              <p className="text-xl font-semibold">Receive</p>
+              <p className="text-zinc-400 text-sm">Share QR or link</p>
+            </div>
+            <ArrowRight className="opacity-40 group-hover:opacity-100 transition" />
           </Link>
 
-          <Link href="/shop" className="group glass rounded-3xl p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center col-span-2">
-            <div className="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-4">
-              <ShoppingBag size={32} className="text-purple-400" />
+          <Link href="/shop" className="glass card-hover rounded-3xl p-6 flex items-center gap-5 group">
+            <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center">
+              <ShoppingBag className="text-purple-400" size={28} />
             </div>
-            <p className="font-semibold text-lg">Shop Credits</p>
-            <p className="text-xs text-zinc-400">Buy with USDC</p>
+            <div className="flex-1">
+              <p className="text-xl font-semibold">Shop</p>
+              <p className="text-zinc-400 text-sm">Buy credits & more</p>
+            </div>
+            <ArrowRight className="opacity-40 group-hover:opacity-100 transition" />
           </Link>
         </div>
 
-        {/* Recent Activity */}
-        <div className="glass rounded-3xl p-6">
-          <h3 className="font-semibold mb-4 flex items-center gap-2">
-            <History size={18} /> Recent Activity
-          </h3>
-          <div className="text-center py-8 text-zinc-400">
-            Your tagged transactions will appear here
-          </div>
-        </div>
-
-        {isConnected && address && (
-          <p className="text-center text-[10px] text-zinc-500 mt-10 font-mono break-all">
+        {isConnected && (
+          <p className="text-center mt-12 text-[10px] text-zinc-600 font-mono break-all px-4">
             {address}
           </p>
         )}
