@@ -14,15 +14,15 @@ export default function Dashboard() {
       c.name.toLowerCase().includes('metamask') || c.name.includes('Injected')
     );
     if (metaMask) connect({ connector: metaMask });
-    else toast.error("Please install MetaMask or WalletConnect");
+    else toast.error("Please install MetaMask or another wallet");
   };
 
   return (
     <div className="min-h-screen bg-[#050505] text-white relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-transparent" />
+      {/* Calm background glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/5 to-transparent pointer-events-none" />
 
-      <div className="max-w-md mx-auto px-6 pt-12 relative z-10">
+      <div className="max-w-md mx-auto px-6 pt-14 relative z-10">
         
         {/* Header */}
         <div className="flex items-center justify-between mb-16">
@@ -35,12 +35,12 @@ export default function Dashboard() {
           <div className="text-xs text-zinc-400">ARC TESTNET</div>
         </div>
 
-        {/* Hero Headline - Premium & Bold */}
-        <div className="mb-16 text-center">
-          <h2 className="text-6xl font-bold tracking-[-3px] leading-none mb-6">
+        {/* Hero Headline */}
+        <div className="mb-16">
+          <h2 className="text-6xl font-bold tracking-[-3px] leading-none">
             Private payments<br />made easy
           </h2>
-          <p className="text-xl text-zinc-400 max-w-[260px] mx-auto">
+          <p className="text-xl text-zinc-400 mt-6">
             Send, receive and shop with USDC instantly
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function Dashboard() {
           <div className="mb-12">
             <button
               onClick={handleConnect}
-              className="w-full py-5 bg-white text-black rounded-3xl text-xl font-semibold hover:bg-emerald-400 transition-all active:scale-95"
+              className="w-full py-5 bg-white text-black rounded-3xl text-xl font-semibold hover:bg-emerald-400 transition-all active:scale-[0.97]"
             >
               Connect Wallet
             </button>
@@ -66,13 +66,16 @@ export default function Dashboard() {
 
         {isConnected && (
           <div className="flex justify-end mb-8">
-            <button onClick={() => disconnect()} className="flex items-center gap-2 text-zinc-400 hover:text-white">
+            <button 
+              onClick={() => disconnect()} 
+              className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm"
+            >
               <LogOut size={18} /> Disconnect
             </button>
           </div>
         )}
 
-        {/* Actions */}
+        {/* Quick Actions */}
         <div className="space-y-5">
           <Link href="/send" className="glass card-hover rounded-3xl p-7 flex items-center gap-6">
             <div className="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center">
