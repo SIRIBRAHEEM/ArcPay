@@ -19,8 +19,8 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white relative overflow-hidden">
-      {/* Calm background glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/5 to-transparent pointer-events-none" />
+      {/* Subtle glow background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-transparent pointer-events-none" />
 
       <div className="max-w-md mx-auto px-6 pt-14 relative z-10">
         
@@ -45,7 +45,7 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Balance Card */}
+        {/* Balance */}
         <div className="glass rounded-3xl p-10 mb-16 text-center">
           <p className="uppercase text-xs tracking-widest text-zinc-400 mb-3">AVAILABLE BALANCE</p>
           <p className="text-7xl font-semibold tracking-[-4px]">42.50</p>
@@ -57,7 +57,7 @@ export default function Dashboard() {
           <div className="mb-12">
             <button
               onClick={handleConnect}
-              className="w-full py-5 bg-white text-black rounded-3xl text-xl font-semibold hover:bg-emerald-400 transition-all active:scale-[0.97]"
+              className="w-full py-5 bg-white text-black rounded-3xl text-xl font-semibold hover:bg-emerald-400 transition-all active:scale-95"
             >
               Connect Wallet
             </button>
